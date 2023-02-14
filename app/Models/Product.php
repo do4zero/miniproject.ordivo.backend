@@ -32,4 +32,9 @@ class Product extends Model
     {
         return date('d F Y, H:i:s',strtotime($value));
     }
+
+    public function transaction_detail()
+    {
+        return $this->belongsTo(TransactionDetail::class);
+    }
 }

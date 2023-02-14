@@ -15,10 +15,11 @@ class CreateShoppingSessionsTable extends Migration
     {
         Schema::create('shopping_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('email', 50);
-            $table->string('phone',15);
-            $table->text('address');
+            $table->string('name', 50)->nullable();
+            $table->string('email', 50)->nullable();
+            $table->string('phone',15)->nullable();
+            $table->text('address')->nullable();
+            $table->string('session_id',100);
             $table->timestamps();
         });
     }

@@ -40,4 +40,21 @@ class CreatePaymentMethodRequest extends FormRequest
             'type.required' => 'Type cannot be empty.'
         ];
     }
+
+    /**
+     * Returns validations errors.
+     *
+     * @param Validator $validator
+     * @throws  HttpResponseException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        if ($this->wantsJson() || $this->ajax()) {
+            throw new HttpResponseException(response()->json([
+                'message' => 'The given data was invalid.',
+                'errors' => $validator->errors()
+            ]), 422);
+        }
+        parent::failedValidation($validator);
+    }
 }

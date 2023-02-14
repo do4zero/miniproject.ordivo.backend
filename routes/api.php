@@ -35,7 +35,6 @@ Route::post('/session/create',[SessionController::class, 'createSession']);
 
 Route::middleware([ShopIsExists::class])
     ->prefix('shop')->group(function () {
-
         Route::prefix('exists')->group(function () {
             Route::get('/{shopcode}',[ShopInformationController::class, 'isExists']);
         });
@@ -56,5 +55,7 @@ Route::prefix('payment')->group(function () {
     });
 
 Route::prefix('transaction')->group(function () {
+    Route::get('/{sessionid}/historyorder',[TransactionController::class, 'orderlistHistory']);
+    Route::get('/{invoicenumber}',[TransactionController::class, 'responsePayment']);
     Route::post('/',[TransactionController::class, 'create']);
 });

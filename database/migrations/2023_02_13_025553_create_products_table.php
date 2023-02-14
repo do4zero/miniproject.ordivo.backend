@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('shop_code')->index();
             $table->bigInteger('user_id')->unsigned()->index();
+            $table->longtext('address');
+            $table->string('phone');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -25,7 +27,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->longtext('description');
             $table->decimal('price');
             $table->integer('stok');
             $table->text('image');

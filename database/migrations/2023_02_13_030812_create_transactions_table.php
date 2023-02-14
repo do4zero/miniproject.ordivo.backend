@@ -19,12 +19,13 @@ class CreateTransactionsTable extends Migration
             $table->decimal('total_qty');
             $table->decimal('total_amount');
             $table->string('status',50)->default('WAITING');
-            $table->string('name', 50);
-            $table->string('email', 50);
-            $table->string('phone',15);
-            $table->text('address');
-            $table->bigInteger('session_id')->unsigned()->index()->nullable();
-            $table->foreign('session_id')->references('id')->on('shopping_sessions')->onDelete('cascade');
+            $table->string('name', 50)->nullable();
+            $table->string('email', 50)->nullable();
+            $table->string('phone',15)->nullable();
+            $table->text('address')->nullable();
+            $table->string('session_id',100);
+            $table->bigInteger('payment_id');
+            $table->bigInteger('shop_id');
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ class CreateMetodePembayaranTable extends Migration
             $table->string('name', 100);
             $table->text('image');
             $table->string('type',20);
+            $table->integer('admin');
+            $table->string('type_admin')->default('NOMINAL');
             $table->timestamps();
         });
     }

@@ -13,4 +13,9 @@ class Helpers
         }
         return $randomString;
     }
+
+    static function invoiceNumber() {
+        $number = date('dmY').'-'.self::generateRandomString(4).'-'.date('His');
+        return $number;
+    }
 }
