@@ -22,7 +22,7 @@
             <div
                 class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4"
             >
-                <div class="text-lg mb-3">Products List</div>
+                <div class="text-lg mb-3">Orders List</div>
                 <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 my-3" />
                 @if (session()->has('message'))
                 <div
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                @endif @if($isOpen) @include('livewire.create') @endif
+                @endif
 
                 <div class="relative">
                     <div
@@ -66,64 +66,43 @@
                     />
                 </div>
 
-                <div class="flex justify-end mt-5">
-                    <button
-                        wire:click="create()"
-                        class="bg-white hover:bg-blue-700 hover:text-white text-blue-500 py-1 mb-6 px-3 rounded my-3 mt-1 border border-blue-500"
-                    >
-                        <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                        Add Product
-                    </button>
-                </div>
-
-                <div class="overflow-auto">
+                <div class="overflow-auto mt-5">
                     <table class="w-full">
                         <thead>
                             <tr class="bg-gray-100">
-                                <th class="px-4 py-2 w-60">Action</th>
-                                <th class="px-4 py-2">Product</th>
-                                <th class="px-4 py-2">Price</th>
-                                <th class="px-4 py-2">Stok</th>
+                                <th class="px-4 py-2 w-100">Invoice Number</th>
+                                <th class="px-4 py-2">Status Order</th>
+                                <th class="px-4 py-2">Total Amount</th>
+                                <th class="px-4 py-2">Buyer Name</th>
+                                <th class="px-4 py-2">Buyer Phone</th>
+                                <th class="px-4 py-2">Buyer Address</th>
+                                <th class="px-4 py-2">Created At</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($products as $product)
+                            @forelse($oderlist as $order)
                             <tr>
                                 <td class="border px-4 py-2 text-center">
-                                    <div
-                                        class="inline-flex rounded-md shadow-sm"
-                                        role="group"
-                                    >
-                                        <button
-                                            wire:click="edit({{ $product->id }})"
-                                            class="px-4 py-1.5 text-sm font-medium text-gray-900 bg-blue-600 border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
-                                        >
-                                            <i
-                                                class="fa fa-pencil-square-o text-white"
-                                                aria-hidden="true"
-                                            ></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            wire:click="delete({{ $product->id }})"
-                                            class="px-4 py-1.5 text-sm font-medium text-gray-900 bg-red-600 border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
-                                        >
-                                            <i
-                                                class="fa fa-trash-o text-white"
-                                                aria-hidden="true"
-                                            ></i>
-                                        </button>
-                                    </div>
+                                    {{ $order->invoice_number }}
                                 </td>
                                 <td class="border px-4 py-2">
-                                    {{ $product->name }}
+                                    {{ $order->status }}
                                 </td>
                                 <td class="border px-4 py-2 text-right">
                                     Rp
-                                    {{ number_format($product->price,2,',','.') }}
+                                    {{ number_format($order->total_amount,2,',','.') }}
+                                </td>
+                                <td class="border px-4 py-2 text-left">
+                                    {{ $order->name }}
                                 </td>
                                 <td class="border px-4 py-2 text-center">
-                                    {{ $product->stok }}
+                                    {{ $order->phone }}
+                                </td>
+                                <td class="border px-4 py-2 text-left">
+                                    {{ $order->address }}
+                                </td>
+                                <td class="border px-4 py-2 text-center">
+                                    {{ $order->created_at }}
                                 </td>
                             </tr>
                             @empty
@@ -140,7 +119,7 @@
                     </table>
                 </div>
                 <div class="py-2">
-                    {{$products->links()}}
+                    {{$oderlist->links()}}
                 </div>
             </div>
         </div>

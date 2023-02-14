@@ -55,7 +55,12 @@ class Products extends Component
             'user_id' => $shop['seller']['id'],
         ];
 
-        return view('livewire.products',['products' => $allProducts->display($params)]);
+        $bagikanLink =  env('FE_BASE_PATH','http://localhost:8081/').'toko/'.$shop['shop']['code'];
+
+        return view('livewire.products',[
+            'products' => $allProducts->display($params),
+            'bagikanLink' => $bagikanLink
+        ]);
     }
 
     /**

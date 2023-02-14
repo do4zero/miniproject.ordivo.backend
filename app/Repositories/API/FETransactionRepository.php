@@ -16,6 +16,20 @@ class FETransactionRepository implements FETransactionRepositoryInterface
         $this->transactionDetail = $transactionDetail;
     }
 
+    public function list($searchTerm, $conditions = array())
+    {
+        $order = $this->transaction;
+
+        if(!empty($searchTerm)){
+            $order = $order->where('invoice_number', '%'.$searchTerm.'%');
+        }
+
+        $order = $order
+                    ->where($conditions)
+                    ->orderBy('created_at','DESC');
+        return $order->paginate(10);
+    }
+
     public function listOrder($sessionid)
     {
         return $this->transaction->where(['session_id' => $sessionid])->orderBy('created_at','DESC')->get();

@@ -17,6 +17,16 @@ class TransactionService
         $this->productRepository = $productRepository;
     }
 
+    public function findAll($searchTerm, $conditions = array())
+    {
+        $data = $this->transactionRepository->list($searchTerm,$conditions);
+
+        return [
+            'status' => true,
+            'data' => $data,
+            'message' => 'History List Order data successfully loaded'
+        ];
+    }
 
     public function listHistory($sessionid)
     {

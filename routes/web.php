@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\OrderList;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Products;
 use Illuminate\Support\Facades\Artisan;
@@ -24,9 +25,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', OrderList::class)->name('dashboard');
     Route::get('/products', Products::class)->name('products');
 });
 
