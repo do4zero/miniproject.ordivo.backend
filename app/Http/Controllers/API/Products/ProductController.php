@@ -6,14 +6,18 @@ use App\Http\Controllers\ApiController as BaseController;
 use App\Libs\HttpStatusCode;
 use App\Services\Products\API\FEGetAllProductsService;
 use App\Services\Products\API\FEGetOneProductService;
+use Illuminate\Http\Request;
 
 class ProductController extends BaseController
 {
     /**
      * Get All Product
      */
-    public function getAllProduct($code, FEGetAllProductsService $products){
+    public function getAllProduct($code, Request $request, FEGetAllProductsService $products){
         $params = ['shop_code' => $code];
+
+        if(!empty($request->search))
+            $params['search'] = $request->search;
 
         $result = $products->display($params);
 

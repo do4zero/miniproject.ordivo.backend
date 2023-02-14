@@ -35,7 +35,7 @@
                     <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Picture:</label>
                     @if(!empty($image))
                         @if(preg_match("#\.(jpg|jpeg|gif|png)$# i",$image))
-                            <img src="{{asset('app/'.$image)}}" class="image"/>
+                            <img src="{{asset($image)}}" class="image"/>
                         @else
                             <img src="{{$image->temporaryUrl()}}" class="image"/>
                         @endif

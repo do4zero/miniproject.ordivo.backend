@@ -29,6 +29,7 @@ class FEGetAllProductsService
             return [
                 'status' => false,
                 'data' => null,
+                'pagination' => $th,
                 'reason' => $th->getMessage(),
                 'message' => 'Products failed to loaded'
             ];

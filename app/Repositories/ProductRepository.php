@@ -17,7 +17,7 @@ class ProductRepository implements ProductRepositoryInterface
     public function findAll($params = array())
     {
         $search = $params['search'];
-        $perPageSize = $params['per_page_size'] ?? 10;
+        $perPageSize = $params['per_page_size'] ?? 2;
         unset($params['search']);
         $conditions = $params;
 

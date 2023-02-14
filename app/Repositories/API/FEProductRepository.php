@@ -19,7 +19,7 @@ class FEProductRepository implements FEProductRepositoryInterface
         $search = $params['search'] ?? '';
         $perPageSize = $params['per_page_size'] ?? 10;
         $conditions = $params;
-        unset($params['search']);
+        unset($conditions['search']);
 
         $products = $this->product;
 
