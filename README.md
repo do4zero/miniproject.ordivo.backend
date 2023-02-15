@@ -27,6 +27,7 @@ DB_DATABASE=******
 DB_USERNAME=******
 DB_PASSWORD=******
 ...
+FILESYSTEM_DRIVER=public
 ...
 FE_BASE_PATH=http://localhost:8080
 ```
